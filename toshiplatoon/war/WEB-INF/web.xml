@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<filter>
+		<filter-name>BasicAuthFilter</filter-name>
+		<filter-class>com.futaba.toshiplatoon.BasicAuthFilter</filter-class>
+		<init-param>
+			<param-name>realm</param-name>
+			<param-value>Basic Auth Test</param-value>
+		</init-param>
+		<init-param>
+			<param-name>passwdFile</param-name>
+			<param-value>WEB-INF/passwd.prop</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>BasicAuthFilter</filter-name>
+		<url-pattern>/rooms</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>Toshiplatoon</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.ToshiplatoonServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterRoom</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.RegisterRoom</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Rooms</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.RoomMan</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeleteRoom</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.DeleteRoom</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CleanupRoom</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.CleanupRoom</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Toshiplatoon</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Rooms</servlet-name>
+		<url-pattern>/rooms</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteRoom</servlet-name>
+		<url-pattern>/del_room</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterRoom</servlet-name>
+		<url-pattern>/reg_room</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>CleanupRoom</servlet-name>
+		<url-pattern>/cron/cleanup</url-pattern>
+	</servlet-mapping>
+	
+	<security-constraint>
+    <web-resource-collection>
+    <web-resource-name>admin</web-resource-name>
+         <url-pattern>/cron/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+         <role-name>admin</role-name>
+    </auth-constraint>
+</security-constraint>
+</web-app>
