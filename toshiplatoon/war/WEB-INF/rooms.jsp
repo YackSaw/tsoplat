@@ -219,6 +219,7 @@
 	</td>
 	<td><c:out value="${room.comment}" escapeXml="false"/></td>
 	<td>
+		<a href="chat?channelKey=<c:out value='${room.id}' />">簡易チャット(お試し版)</a>
 		<form action="/del_room" method="post">
 			<input type="passwd" name="passwd" />
 			<input type="hidden" name="id" value="${room.id}"/>
@@ -317,7 +318,7 @@
 		<option <c:if test="${i == startDate}">selected</c:if>><c:out value="${i}" /></option>
 		</c:forEach>
 		</select>日
-		
+		<br>
 		<select name="startHour">
 		<c:forEach begin="0" end="23" var="i">
 		<option <c:if test="${i == startHour}">selected</c:if>><c:out value="${i}" /></option>
@@ -354,7 +355,7 @@
 		<option <c:if test="${i == endDate}">selected</c:if>><c:out value="${i}" /></option>
 		</c:forEach>
 		</select>日
-		
+		<br>
 		<select name="endHour" id="idendHour" disabled>
 		<c:forEach begin="0" end="23" var="i">
 		<option <c:if test="${i == endHour}">selected</c:if>><c:out value="${i}" /></option>

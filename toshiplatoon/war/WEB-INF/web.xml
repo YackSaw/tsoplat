@@ -20,7 +20,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<filter-name>BasicAuthFilter</filter-name>
 		<url-pattern>/rooms</url-pattern>
 	</filter-mapping>
-	
+
+	<servlet>
+		<servlet-name>ChatRoom</servlet-name>
+		<servlet-class>com.futaba.toshiplatoon.ChatRoom</servlet-class>
+	</servlet>	
 	<servlet>
 		<servlet-name>Toshiplatoon</servlet-name>
 		<servlet-class>com.futaba.toshiplatoon.ToshiplatoonServlet</servlet-class>
@@ -43,6 +47,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>com.futaba.toshiplatoon.CleanupRoom</servlet-class>
 	</servlet>
 	
+	<servlet-mapping>
+		<servlet-name>ChatRoom</servlet-name>
+		<url-pattern>/chat</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Toshiplatoon</servlet-name>
 		<url-pattern>/index</url-pattern>
